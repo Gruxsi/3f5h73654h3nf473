@@ -1,0 +1,263 @@
+body {
+    background: linear-gradient(120deg, #3a8dde, #5865F2, #23272f, #3a8dde);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite, fadeIn 1.2s;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 60px; /* Odstęp na dole, by footer nie był przyklejony */
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+header {
+    margin-top: 60px;
+    text-align: center;
+    background: rgba(40, 40, 48, 0.85);
+    padding: 40px 30px 30px 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: box-shadow 0.3s;
+}
+
+header:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.logo-anim {
+    font-size: 3rem;
+    color: #a3e635;
+    margin-bottom: 10px;
+    animation: logoPulse 2s infinite alternate;
+}
+@keyframes logoPulse {
+    0% { transform: scale(1); color: #a3e635; }
+    100% { transform: scale(1.15); color: #5865F2; }
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #a3e635, #5865F2, #a3e635);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s linear infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.motto {
+    font-size: 1.3rem;
+    color: #a3e635;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 8px #23272f;
+    letter-spacing: 1px;
+}
+
+.discord-link {
+    display: inline-block;
+    background: linear-gradient(90deg, #5865F2, #4752c4);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 16px 0 rgba(88,101,242,0.25);
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 24px;
+}
+
+.discord-link:hover {
+    background: linear-gradient(90deg, #4752c4, #5865F2);
+    transform: scale(1.05);
+}
+
+.discord-widget {
+    margin: 20px auto 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px 0 rgba(88,101,242,0.15);
+    max-width: 350px;
+    background: rgba(40, 40, 48, 0.7);
+    text-align: center;      /* Wyśrodkowanie tekstu */
+    display: flex;           /* Wyśrodkowanie w flexboxie */
+    justify-content: center; /* Wyśrodkowanie w poziomie */
+    align-items: center;     /* Wyśrodkowanie w pionie */
+}
+
+section {
+    background: rgba(40, 40, 48, 0.7);
+    margin: 32px 0 0 0;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px 0 rgba(88,101,242,0.10);
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 1.2s;
+}
+
+section h2 {
+    color: #a3e635;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+.why-join ul,
+.achievements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.why-join li,
+.achievements li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.team-list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+}
+.team-member {
+    background: rgba(60, 60, 80, 0.7);
+    border-radius: 12px;
+    padding: 18px 24px;
+    min-width: 160px;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px 0 rgba(88,101,242,0.10);
+}
+.team-member i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: #a3e635;
+}
+.faq-item {
+    background: rgba(60, 60, 80, 0.6);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    color: #b3c6ff;
+    background: transparent;
+    font-size: 1rem;
+    margin-top: 40px;
+    padding: 20px 0 0 0;
+    letter-spacing: 1px;
+    /* NIE dodawaj position: fixed ani absolute! */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -210px; /* Ukryty na start */
+    width: 210px;
+    height: 100vh;
+    background: rgba(40, 40, 60, 0.96);
+    box-shadow: 2px 0 16px 0 rgba(88,101,242,0.10);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: left 0.3s;
+}
+.sidebar.open {
+    left: 0;
+}
+#sidebar-toggle {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 200;
+    background: #5865F2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(88,101,242,0.10);
+    transition: background 0.2s;
+}
+#sidebar-toggle:hover {
+    background: #4752c4;
+}
+main {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+}
+.sidebar.open ~ main {
+    margin-left: 210px;
+}
+.sidebar ul { padding: 0; margin: 0; margin-top: 60px; }
+.sidebar li { margin-bottom: 8px; position: relative; }
+.sidebar a { color: #fff; text-decoration: none; font-size: 1.15rem; padding: 14px 28px; display: flex; align-items: center; gap: 12px; border-radius: 8px 0 0 8px; transition: background 0.2s, color 0.2s; }
+.sidebar a:hover, .sidebar a.active { background: #5865F2; color: #a3e635; }
+.has-sub > a { cursor: pointer; }
+.submenu {
+    display: none;
+    flex-direction: column;
+    background: rgba(40, 40, 60, 0.96);
+    margin: 0;
+    padding: 0 0 0 10px;
+    border-left: 2px solid #5865F2;
+}
+.has-sub.open .submenu { display: flex; }
+.submenu li { margin-bottom: 0; }
+@media (max-width: 700px) {
+    .sidebar { width: 60px; }
+    .sidebar.open { left: 0; }
+    main { margin-left: 0; }
+    .sidebar.open ~ main { margin-left: 60px; }
+}
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .motto { font-size: 1rem; }
+    header { padding: 20px 10px; }
+    .discord-widget { max-width: 100%; }
+    section { padding: 16px 6px; }
+}
+
+<script>
+    // Sidebar toggle
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+    // Zamknij sidebar na start
+    sidebar.classList.remove('open');
+</script>

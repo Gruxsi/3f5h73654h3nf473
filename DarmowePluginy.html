@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Darmowe pluginy - Techno-code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Mitskie: Dodaj ten fragment do każdego pliku html -->
+    <button id="sidebar-toggle" aria-label="Otwórz menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="Informacje.html"><i class="fa-solid fa-circle-info"></i> Informacje</a></li>
+            <li class="has-sub">
+                <a href="#" id="pluginy-link"><i class="fa-solid fa-download"></i> Darmowe pluginy <i class="fa-solid fa-chevron-down" style="margin-left:auto;"></i></a>
+                <ul class="submenu">
+                    <!-- Mitskie: Dodaj tu kolejne pluginy jeśli chcesz podkategorie -->
+                    <li><a href="DarmowePluginy.html" class="active"><i class="fa-solid fa-cube"></i> Wszystkie pluginy</a></li>
+                    <!-- <li><a href="#"><i class="fa-solid fa-cube"></i> Plugin 2</a></li> -->
+                </ul>
+            </li>
+            <li><a href="Kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="plugins reveal">
+            <h2><i class="fa-solid fa-download"></i> Darmowe pluginy Minecraft</h2>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-cube"></i>
+                    <a href="darmowe_pluginy/Techno-Generator-mapy.jar" download>Techno-Generator-mapy</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cube"></i>
+                    <a href="darmowe_pluginy/Techno-EmberClass.jar" download>Techno-EmberClass</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cube"></i>
+                    <a href="darmowe_pluginy/Techno-EmberBossy.jar" download>Techno-EmberBossy</a>
+                </li>
+                <!-- Dodaj kolejne pliki ręcznie -->
+            </ul>
+        </section>
+        <footer>
+            &copy; 2025 Techno-code. Wszelkie prawa zastrzeżone.
+        </footer>
+    </main>
+    <script>
+        // Mitskie: Sidebar toggle
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        sidebar.classList.remove('open');
+
+        // Mitskie: Rozwijane podmenu
+        const pluginyLink = document.getElementById('pluginy-link');
+        const submenu = pluginyLink.nextElementSibling;
+        submenu.style.display = 'none';
+        pluginyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Mitskie: Pluginy
+        fetch('pluginy.json')
+            .then(res => res.json())
+            .then(data => {
+                let html = '';
+                data.forEach(plugin => {
+                    html += `<div class="plugin-card">
+                        <i class="fa-solid fa-cube"></i>
+                        <b>${plugin.nazwa}</b><br>
+                        <span>${plugin.opis}</span><br>
+                        <a href="darmowe_pluginy/${plugin.plik}" download><i class="fa-solid fa-download"></i> Pobierz</a>
+                    </div>`;
+                });
+                document.getElementById('plugin-list').innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById('plugin-list').innerText = 'Brak pluginów do pobrania.';
+            });
+
+        // Mitskie: Scroll reveal
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (const el of reveals) {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 120;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+</html>

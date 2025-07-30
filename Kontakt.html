@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontakt - Techno-code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Mitskie: Sidebar toggle i sidebar z podkategoriami -->
+    <button id="sidebar-toggle" aria-label="Otwórz menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="Informacje.html"><i class="fa-solid fa-circle-info"></i> Informacje</a></li>
+            <li class="has-sub">
+                <a href="#" id="pluginy-link"><i class="fa-solid fa-download"></i> Darmowe pluginy <i class="fa-solid fa-chevron-down" style="margin-left:auto;"></i></a>
+                <ul class="submenu">
+                    <li><a href="DarmowePluginy.html"><i class="fa-solid fa-cube"></i> Wszystkie pluginy</a></li>
+                </ul>
+            </li>
+            <li><a href="Kontakt.html" class="active"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="contact reveal reveal-strong">
+            <h2><i class="fa-solid fa-envelope"></i> Kontakt</h2>
+            <p>
+                Masz pytania? Napisz na <a href="mailto:technocode.kontakt@gmail.com">technocode.kontakt@gmail.com</a> lub dołącz na nasz <a href="https://discord.com/invite/n4MDvNTfxT" target="_blank">Discord</a>!
+            </p>
+        </section>
+        <footer>
+            &copy; 2025 Techno-code. Wszelkie prawa zastrzeżone.
+        </footer>
+    </main>
+    <!-- Mitskie: Skrypt sidebaru -->
+    <script>
+        // Mitskie: Sidebar toggle
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        sidebar.classList.remove('open');
+
+        // Mitskie: Rozwijane podmenu
+        const pluginyLink = document.getElementById('pluginy-link');
+        const submenu = pluginyLink.nextElementSibling;
+        submenu.style.display = 'none';
+        pluginyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Mitskie: Scroll reveal
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (const el of reveals) {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 120;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+</html>
